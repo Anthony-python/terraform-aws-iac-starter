@@ -1,9 +1,8 @@
 terraform {
   cloud {
-    organization = "Anthony-python" # Your Terraform Cloud org
-
+    organization = "Anthony-python" # Change to your Terraform Cloud organization name
     workspaces {
-      name = "terraform-aws-iac-starter" # Your Terraform Cloud workspace
+      name = "terraform-aws-iac-starter"
     }
   }
 
@@ -13,28 +12,30 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  required_version = ">= 1.2.0"
 }
 
 provider "aws" {
   region = var.aws_region
 }
 
-# Create EC2 Instance
-resource "aws_instance" "example" {
-  ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 in us-east-1
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "Terraform-EC2-Demo"
-  }
-}
-
-# Create S3 Bucket
+# S3 bucket
 resource "aws_s3_bucket" "example" {
   bucket = var.bucket_name
 
   tags = {
-    Name        = "Terraform-S3-Demo"
+    Name        = "MyTerraformBucket"
     Environment = "Dev"
+  }
+}
+
+# EC2 instance
+resource "aws_instance" "example" {
+  ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 AMI in us-east-1
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "MyTerraformInstance"
   }
 }
