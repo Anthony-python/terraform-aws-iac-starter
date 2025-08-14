@@ -1,10 +1,9 @@
 terraform {
-  required_version = ">= 1.6.0"
-
   cloud {
-    organization = "YOUR_ORG_NAME" # Change to your Terraform Cloud org
+    organization = "Anthony-python"
+
     workspaces {
-      name = "iac-beginner-labs"    # Change to your workspace name
+      name = "terraform-aws-iac-starter"
     }
   }
 
@@ -13,9 +12,7 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-    archive = {
-      source  = "hashicorp/archive"
-      version = "~> 2.0"
-    }
   }
+
+  required_version = ">= 1.3.0"
 }
